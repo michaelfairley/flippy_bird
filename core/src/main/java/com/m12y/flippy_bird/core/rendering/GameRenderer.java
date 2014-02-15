@@ -16,7 +16,6 @@ public class GameRenderer {
 
     public GameRenderer() {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 12, 16);
 
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camera.combined);
@@ -37,8 +36,8 @@ public class GameRenderer {
     }
 
     public void resize(int width, int height) {
-        camera.setToOrtho(false, width, height);
-        camera.translate(-width / 2, 0);
+        camera.setToOrtho(false, Game.WIDTH, Game.WIDTH * height/(1.0f*width));
+        camera.translate(0, Game.HEIGHT - Game.WIDTH * height/(1.0f*width));
         camera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
     }

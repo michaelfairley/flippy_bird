@@ -5,16 +5,17 @@ public class Bird {
     private float velocity;
     private boolean flipped;
 
-    public static final float WIDTH = 30;
+    public static final float WIDTH = 1f;
+    private static final float GRAVITY = 0.01f;
 
     public Bird() {
-        position = 500;
+        position = Game.WIDTH/2;
         velocity = 0;
         flipped = false;
     }
 
     public void update() {
         position += velocity;
-        velocity += flipped ? 0.1f : -0.1f;
+        velocity += flipped ? GRAVITY : -GRAVITY;
     }
 }

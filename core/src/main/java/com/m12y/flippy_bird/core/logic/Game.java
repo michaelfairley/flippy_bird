@@ -9,6 +9,9 @@ public class Game {
 
     private int tick;
 
+    public static final float WIDTH = 10;
+    public static final float HEIGHT = 13;
+
     public Game() {
         bird = new Bird();
         obstacles = new Array<Obstacle>(false, 5);

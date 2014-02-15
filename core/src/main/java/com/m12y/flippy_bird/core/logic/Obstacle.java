@@ -6,14 +6,23 @@ public class Obstacle {
     public float position;
     public final float gap;
 
-    public static final float WIDTH = 40;
+    public static final float WIDTH = 1f;
+    public static final float GAP_SIZE = 2f;
 
     public Obstacle() {
-        position = 100;
+        position = Game.WIDTH;
         gap = MathUtils.random();
     }
 
     public void update() {
-        position -= 1;
+        position -= 0.1;
+    }
+
+    public float gapBottom() {
+        return (Game.HEIGHT - GAP_SIZE) * gap;
+    }
+
+    public float gapTop() {
+        return (Game.HEIGHT - GAP_SIZE) * gap + GAP_SIZE;
     }
 }
