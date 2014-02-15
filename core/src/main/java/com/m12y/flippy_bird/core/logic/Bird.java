@@ -9,7 +9,7 @@ public class Bird {
     private static final float GRAVITY = 0.01f;
 
     public Bird() {
-        position = Game.WIDTH/2;
+        position = Game.HEIGHT/2;
         velocity = 0;
         flipped = false;
     }
