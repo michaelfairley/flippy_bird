@@ -9,6 +9,8 @@ public class FlippyBirdDesktop {
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.useGL20 = true;
+        config.width = 640/2;
+        config.height = 1136/2;
 		new LwjglApplication(new FlippyBird(), config);
 	}
 }
