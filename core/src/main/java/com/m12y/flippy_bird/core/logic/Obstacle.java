@@ -12,7 +12,7 @@ public class Obstacle {
     public static final int GENERATION_RATE = 60;
 
     public Obstacle() {
-        position = Game.WIDTH;
+        position = Game.WIDTH + WIDTH;
         gap = MathUtils.random();
     }
 
