@@ -13,7 +13,7 @@ public class BirdRenderer {
     public void render(Bird bird) {
         shapeRenderer.setColor(1, 0, 0, 0);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(2f-Bird.WIDTH/2, bird.position-Bird.WIDTH/2, Bird.WIDTH, Bird.WIDTH);
+        shapeRenderer.rect(bird.leftEdge(), bird.position - Bird.SIZE / 2, Bird.SIZE, Bird.SIZE);
         shapeRenderer.end();
     }
 }

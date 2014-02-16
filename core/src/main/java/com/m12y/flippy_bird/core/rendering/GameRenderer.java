@@ -3,6 +3,8 @@ package com.m12y.flippy_bird.core.rendering;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.logic.Obstacle;
@@ -14,6 +16,10 @@ public class GameRenderer {
     private final BirdRenderer birdRenderer;
     private final ObstacleRenderer obstacleRenderer;
 
+    private final BitmapFont font;
+    private final SpriteBatch spriteBatch;
+
+
     public GameRenderer() {
         camera = new OrthographicCamera();
 
@@ -22,6 +28,9 @@ public class GameRenderer {
 
         birdRenderer = new BirdRenderer(shapeRenderer);
         obstacleRenderer = new ObstacleRenderer(shapeRenderer);
+
+        spriteBatch = new SpriteBatch();
+        font = new BitmapFont();
     }
 
     public void render(Game game) {
@@ -33,6 +42,10 @@ public class GameRenderer {
         for (Obstacle obstacle : game.obstacles) {
             obstacleRenderer.render(obstacle);
         }
+
+        spriteBatch.begin();
+        font.draw(spriteBatch, Integer.toString(game.score), 20, 150);
+        spriteBatch.end();
     }
 
     public void resize(int width, int height) {

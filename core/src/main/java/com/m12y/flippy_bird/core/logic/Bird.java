@@ -1,13 +1,12 @@
 package com.m12y.flippy_bird.core.logic;
 
-import com.badlogic.gdx.math.MathUtils;
-
 public class Bird {
     public float position;
     private float velocity;
     private boolean flipped;
 
-    public static final float WIDTH = 1f;
+    public static final float CENTER = 2f;
+    public static final float SIZE = 1f;
     private static final float GRAVITY = 0.012f;
     private static final float MAX_VELOCITY = 0.23f;
     private static final float DRAG_COEFFICIENT = GRAVITY / MAX_VELOCITY;
@@ -30,5 +29,13 @@ public class Bird {
 
     private float drag() {
         return velocity * DRAG_COEFFICIENT;
+    }
+
+    public float leftEdge() {
+        return CENTER - SIZE /2;
+    }
+
+    public float rightEdge() {
+        return CENTER + SIZE /2;
     }
 }

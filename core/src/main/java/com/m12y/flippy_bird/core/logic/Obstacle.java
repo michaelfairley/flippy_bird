@@ -11,9 +11,12 @@ public class Obstacle {
 
     public static final int GENERATION_RATE = 60;
 
+    private boolean scored;
+
     public Obstacle() {
         position = Game.WIDTH + WIDTH;
         gap = MathUtils.random();
+        scored = false;
     }
 
     public void update() {
@@ -26,5 +29,24 @@ public class Obstacle {
 
     public float gapTop() {
         return (Game.HEIGHT - GAP_SIZE) * gap + GAP_SIZE;
+    }
+
+    public float leftEdge() {
+        return position - WIDTH /2;
+    }
+
+    public float rightEdge() {
+        return position + WIDTH /2;
+    }
+
+    public boolean score(Bird bird) {
+        if (scored) return false;
+
+        if (rightEdge() < bird.leftEdge()) {
+            scored = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
