@@ -19,8 +19,11 @@ public class GameRenderer {
     private final BitmapFont font;
     private final SpriteBatch spriteBatch;
 
+    public static GameRenderer instance;
 
     public GameRenderer() {
+        instance = this;
+
         camera = new OrthographicCamera();
 
         shapeRenderer = new ShapeRenderer();

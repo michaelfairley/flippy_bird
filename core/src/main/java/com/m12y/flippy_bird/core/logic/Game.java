@@ -19,16 +19,26 @@ public class Game {
         obstacles = new Array<Obstacle>(false, 3);
     }
 
-    public void update(float delta) {
+    public boolean update(float delta) {
         int currentTick = MathUtils.floor(elapsed * TPS);
         elapsed += delta;
         int targetTick = MathUtils.floor(elapsed * TPS);
         for (; currentTick < targetTick; currentTick += 1) {
             updateChildren();
             addAndRemoveObstacles(currentTick);
-            // collision
             score();
+            if (collision()) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    private boolean collision() {
+        if (bird.bottomEdge() < 0) return true;
+        if (bird.topEdge() > Game.HEIGHT) return true;
+
+        return false;
     }
 
     private void addAndRemoveObstacles(int currentTick) {

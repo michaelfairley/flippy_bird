@@ -32,10 +32,18 @@ public class Bird {
     }
 
     public float leftEdge() {
-        return CENTER - SIZE /2;
+        return CENTER - SIZE / 2;
     }
 
     public float rightEdge() {
-        return CENTER + SIZE /2;
+        return CENTER + SIZE / 2;
+    }
+
+    public float bottomEdge() {
+        return position - SIZE / 2;
+    }
+
+    public float topEdge() {
+        return position + SIZE / 2;
     }
 }

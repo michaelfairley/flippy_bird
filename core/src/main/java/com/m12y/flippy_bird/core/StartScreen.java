@@ -5,19 +5,16 @@ import com.badlogic.gdx.Screen;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
 
-public class GameScreen implements Screen {
+public class StartScreen implements Screen {
     private final Game game;
 
-    public GameScreen(Game game) {
-        this.game = game;
-        Gdx.input.setInputProcessor(new GameInputProcessor(this.game));
+    public StartScreen() {
+        this.game = new Game();
+        Gdx.input.setInputProcessor(new StartInputProcessor(game));
     }
 
     @Override
     public void render(float delta) {
-        if (game.update(delta)) {
-            FlippyBird.instance.setScreen(new GameOverScreen(game));
-        }
         GameRenderer.instance.render(game);
     }
 

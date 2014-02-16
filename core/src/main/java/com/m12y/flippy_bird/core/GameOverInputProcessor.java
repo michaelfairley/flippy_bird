@@ -1,18 +1,11 @@
 package com.m12y.flippy_bird.core;
 
 import com.badlogic.gdx.InputProcessor;
-import com.m12y.flippy_bird.core.logic.Game;
 
-public class FlippyInputProcessor implements InputProcessor {
-    private final Game game;
-
-    public FlippyInputProcessor(Game game) {
-        this.game = game;
-    }
-
+public class GameOverInputProcessor implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
-        game.bird.flip();
+        FlippyBird.instance.setScreen(new StartScreen());
         return true;
     }
 
@@ -28,7 +21,7 @@ public class FlippyInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        game.bird.flip();
+        FlippyBird.instance.setScreen(new StartScreen());
         return true;
     }
 
