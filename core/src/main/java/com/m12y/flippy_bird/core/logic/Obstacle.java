@@ -9,6 +9,8 @@ public class Obstacle {
     public static final float WIDTH = 1f;
     public static final float GAP_SIZE = 2f;
 
+    public static final int GENERATION_RATE = 60;
+
     public Obstacle() {
         position = Game.WIDTH;
         gap = MathUtils.random();
