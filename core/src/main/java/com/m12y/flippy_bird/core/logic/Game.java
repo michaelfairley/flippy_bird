@@ -24,27 +24,36 @@ public class Game {
         elapsed += delta;
         int targetTick = MathUtils.floor(elapsed * TPS);
         for (; currentTick < targetTick; currentTick += 1) {
-            bird.update();
-            for (Obstacle obstacle : obstacles) {
-                obstacle.update();
-            }
-
-            if (currentTick % Obstacle.GENERATION_RATE == 0) {
-                for (Obstacle obstacle : obstacles) {
-                    if (obstacle.position < 0) {
-                        obstacles.removeValue(obstacle, true);
-                    }
-                }
-                obstacles.add(new Obstacle());
-                assert obstacles.size <= 3;
-            }
-
+            updateChildren();
+            addAndRemoveObstacles(currentTick);
             // collision
+            score();
+        }
+    }
 
+    private void addAndRemoveObstacles(int currentTick) {
+        if (currentTick % Obstacle.GENERATION_RATE == 0) {
             for (Obstacle obstacle : obstacles) {
-                if (obstacle.score(bird)) {
-                    score++;
+                if (obstacle.position < 0) {
+                    obstacles.removeValue(obstacle, true);
                 }
+            }
+            obstacles.add(new Obstacle());
+            assert obstacles.size <= 3;
+        }
+    }
+
+    private void updateChildren() {
+        bird.update();
+        for (Obstacle obstacle : obstacles) {
+            obstacle.update();
+        }
+    }
+
+    private void score() {
+        for (Obstacle obstacle : obstacles) {
+            if (obstacle.score(bird)) {
+                score++;
             }
         }
     }
