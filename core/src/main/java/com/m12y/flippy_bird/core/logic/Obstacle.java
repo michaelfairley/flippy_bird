@@ -7,7 +7,7 @@ public class Obstacle {
     public final float gap;
 
     public static final float WIDTH = 1f;
-    public static final float GAP_SIZE = 2f;
+    public static final float GAP_SIZE = 3f;
 
     public static final int GENERATION_RATE = 60;
 

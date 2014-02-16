@@ -15,6 +15,7 @@ public class GameScreen implements Screen {
         this.flippyBird = flippyBird;
         game = new Game();
         gameRenderer = new GameRenderer();
+        Gdx.input.setInputProcessor(new FlippyInputProcessor(game));
     }
 
     @Override

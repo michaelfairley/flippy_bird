@@ -24,7 +24,7 @@ public class Game {
         elapsed += delta;
         int targetTick = MathUtils.floor(elapsed * TPS);
         for (; currentTick < targetTick; currentTick += 1) {
-    //        bird.update();
+            bird.update();
             for (Obstacle obstacle : obstacles) {
                 obstacle.update();
             }
