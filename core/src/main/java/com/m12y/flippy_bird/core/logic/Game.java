@@ -16,7 +16,7 @@ public class Game {
 
     public Game() {
         bird = new Bird();
-        obstacles = new Array<Obstacle>(false, 5);
+        obstacles = new Array<Obstacle>(false, 3);
     }
 
     public void update(float delta) {
@@ -36,6 +36,7 @@ public class Game {
                     }
                 }
                 obstacles.add(new Obstacle());
+                assert obstacles.size <= 3;
             }
 
             // collision
