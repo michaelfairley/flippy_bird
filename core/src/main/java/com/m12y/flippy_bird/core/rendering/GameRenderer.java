@@ -24,6 +24,7 @@ public class GameRenderer {
     public static GameRenderer instance;
 
     private final Texture ceilingTexture;
+    private final Texture floorTexture;
 
     public GameRenderer() {
         instance = this;
@@ -40,6 +41,7 @@ public class GameRenderer {
         obstacleRenderer = new ObstacleRenderer(spriteBatch);
 
         ceilingTexture = new Texture(Gdx.files.internal("bricks.png"));
+        floorTexture = new Texture(Gdx.files.internal("stone.png"));
     }
 
     public void render(Game game) {
@@ -55,6 +57,7 @@ public class GameRenderer {
         spriteBatch.begin();
         font.draw(spriteBatch, Integer.toString(game.score), 20, 150);
         renderCeiling(game);
+        renderFloor(game);
         spriteBatch.end();
     }
 
@@ -69,6 +72,18 @@ public class GameRenderer {
             camera.project(postition);
 
             spriteBatch.draw(ceilingTexture, postition.x, postition.y, unit(), unit());
+        }
+    }
+
+    private void renderFloor(Game game) {
+        float scrolled = game.ticks() * -Game.SCROLL_SPEED % 1;
+        for (; scrolled < Game.WIDTH; scrolled += 1) {
+            for (int i = -1; i > Game.HEIGHT - camera.viewportHeight; i--) {
+                Vector3 postition = new Vector3(scrolled, i, 0);
+                camera.project(postition);
+
+                spriteBatch.draw(floorTexture, postition.x, postition.y, unit(), unit());
+            }
         }
     }
 

@@ -25,6 +25,10 @@ public class Game {
         return MathUtils.floor(elapsed * TPS);
     }
 
+    public void noopdate(float delta) {
+        elapsed += delta;
+    }
+
     public boolean update(float delta) {
         int currentTick = ticks();
         elapsed += delta;
@@ -51,7 +55,7 @@ public class Game {
     }
 
     private void addAndRemoveObstacles(int currentTick) {
-        if (currentTick % Obstacle.GENERATION_RATE == 0) {
+        if (currentTick % Obstacle.GENERATION_RATE == 24) {
             for (Obstacle obstacle : obstacles) {
                 if (obstacle.position < 0) {
                     obstacles.removeValue(obstacle, true);

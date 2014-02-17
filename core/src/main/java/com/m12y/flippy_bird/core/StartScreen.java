@@ -15,6 +15,7 @@ public class StartScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        game.noopdate(delta);
         GameRenderer.instance.render(game);
     }
 
