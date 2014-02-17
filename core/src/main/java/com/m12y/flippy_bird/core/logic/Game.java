@@ -14,15 +14,21 @@ public class Game {
     public static final float WIDTH = 10;
     public static final float HEIGHT = 13;
 
+    public static final float SCROLL_SPEED = 0.1f;
+
     public Game() {
         bird = new Bird();
         obstacles = new Array<Obstacle>(false, 3);
     }
 
+    public int ticks() {
+        return MathUtils.floor(elapsed * TPS);
+    }
+
     public boolean update(float delta) {
-        int currentTick = MathUtils.floor(elapsed * TPS);
+        int currentTick = ticks();
         elapsed += delta;
-        int targetTick = MathUtils.floor(elapsed * TPS);
+        int targetTick = ticks();
         for (; currentTick < targetTick; currentTick += 1) {
             updateChildren();
             addAndRemoveObstacles(currentTick);

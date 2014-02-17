@@ -21,7 +21,7 @@ public class Obstacle {
     }
 
     public void update() {
-        position -= 0.1;
+        position -= Game.SCROLL_SPEED;
     }
 
     public float gapBottom() {
