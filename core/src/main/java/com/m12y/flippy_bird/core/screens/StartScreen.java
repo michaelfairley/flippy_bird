@@ -1,7 +1,8 @@
-package com.m12y.flippy_bird.core;
+package com.m12y.flippy_bird.core.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.m12y.flippy_bird.core.input.StartInputProcessor;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
 

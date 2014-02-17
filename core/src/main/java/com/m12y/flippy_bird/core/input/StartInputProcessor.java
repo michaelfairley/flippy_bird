@@ -1,7 +1,9 @@
-package com.m12y.flippy_bird.core;
+package com.m12y.flippy_bird.core.input;
 
 import com.badlogic.gdx.InputProcessor;
+import com.m12y.flippy_bird.core.FlippyBird;
 import com.m12y.flippy_bird.core.logic.Game;
+import com.m12y.flippy_bird.core.screens.GameScreen;
 
 public class StartInputProcessor implements InputProcessor {
     private final Game game;

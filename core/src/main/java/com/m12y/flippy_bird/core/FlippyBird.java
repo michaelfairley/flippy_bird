@@ -2,6 +2,7 @@ package com.m12y.flippy_bird.core;
 
 import com.badlogic.gdx.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
+import com.m12y.flippy_bird.core.screens.StartScreen;
 
 public class FlippyBird extends Game {
     public static FlippyBird instance;
