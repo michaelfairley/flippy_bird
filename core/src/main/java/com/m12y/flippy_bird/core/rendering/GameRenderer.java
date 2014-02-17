@@ -108,4 +108,14 @@ public class GameRenderer {
         spriteBatch.setProjectionMatrix(camera.combined);
         textSpriteBatch.setProjectionMatrix(textCamera.combined);
     }
+
+    public void renderStartText(String line1, String line2) {
+        float width1 = scoreFont.getBounds(line1).width;
+        float width2 = scoreFont.getBounds(line2).width;
+
+        textSpriteBatch.begin();
+        scoreFont.draw(textSpriteBatch, line1, (textCamera.viewportWidth - width1) / 2, 150f);
+        scoreFont.draw(textSpriteBatch, line2, (textCamera.viewportWidth - width2) / 2, 90f);
+        textSpriteBatch.end();
+    }
 }

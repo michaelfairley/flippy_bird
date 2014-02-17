@@ -18,6 +18,7 @@ public class StartScreen implements Screen {
     public void render(float delta) {
         game.noopdate(delta);
         GameRenderer.instance.render(game);
+        GameRenderer.instance.renderStartText("Press any key", "to flip");
     }
 
     @Override
