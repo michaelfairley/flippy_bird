@@ -1,5 +1,7 @@
 package com.m12y.flippy_bird.core.logic;
 
+import com.badlogic.gdx.math.Rectangle;
+
 public class Bird {
     public float position;
     private float velocity;
@@ -45,5 +47,9 @@ public class Bird {
 
     public float topEdge() {
         return position + SIZE / 2;
+    }
+
+    public Rectangle rect() {
+        return new Rectangle(leftEdge(), bottomEdge(), SIZE, SIZE);
     }
 }

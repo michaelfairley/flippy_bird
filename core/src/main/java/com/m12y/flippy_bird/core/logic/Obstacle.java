@@ -1,6 +1,7 @@
 package com.m12y.flippy_bird.core.logic;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Obstacle {
     public float position;
@@ -48,5 +49,17 @@ public class Obstacle {
         } else {
             return false;
         }
+    }
+
+    public boolean isColliding(Rectangle rect) {
+        return topRect().overlaps(rect) || bottomRect().overlaps(rect);
+    }
+
+    public Rectangle topRect() {
+        return new Rectangle(leftEdge(), gapTop(), WIDTH, Game.HEIGHT - gapTop());
+    }
+
+    public Rectangle bottomRect() {
+        return new Rectangle(leftEdge(), 0, WIDTH, gapBottom());
     }
 }

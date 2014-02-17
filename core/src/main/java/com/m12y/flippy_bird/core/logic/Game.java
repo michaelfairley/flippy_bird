@@ -37,6 +37,9 @@ public class Game {
     private boolean collision() {
         if (bird.bottomEdge() < 0) return true;
         if (bird.topEdge() > Game.HEIGHT) return true;
+        for (Obstacle obstacle : obstacles) {
+            if (obstacle.isColliding(bird.rect())) return true;
+        }
 
         return false;
     }

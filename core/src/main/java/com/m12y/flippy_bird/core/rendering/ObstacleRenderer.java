@@ -14,8 +14,8 @@ public class ObstacleRenderer {
     public void render(Obstacle obstacle) {
         shapeRenderer.setColor(0, 1, 0, 0);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(obstacle.position - Obstacle.WIDTH, 0, Obstacle.WIDTH, obstacle.gapBottom());
-        shapeRenderer.rect(obstacle.position - Obstacle.WIDTH, obstacle.gapTop(), Obstacle.WIDTH, Game.HEIGHT-obstacle.gapTop());
+        shapeRenderer.rect(obstacle.leftEdge(), 0, Obstacle.WIDTH, obstacle.gapBottom());
+        shapeRenderer.rect(obstacle.leftEdge(), obstacle.gapTop(), Obstacle.WIDTH, Game.HEIGHT-obstacle.gapTop());
         shapeRenderer.end();
     }
 }
