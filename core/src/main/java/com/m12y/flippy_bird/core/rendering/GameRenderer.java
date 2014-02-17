@@ -59,15 +59,16 @@ public class GameRenderer {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
+        renderScore(game);
+
         birdRenderer.render(game.bird);
+
+        spriteBatch.begin();
 
         for (Obstacle obstacle : game.obstacles) {
             obstacleRenderer.render(obstacle);
         }
 
-        renderScore(game);
-
-        spriteBatch.begin();
         renderCeiling(game);
         renderFloor(game);
         spriteBatch.end();

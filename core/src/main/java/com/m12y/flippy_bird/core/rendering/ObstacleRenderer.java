@@ -18,14 +18,10 @@ public class ObstacleRenderer {
     }
 
     public void render(Obstacle obstacle) {
-        spriteBatch.begin();
-
         for (int i = 0; i < Game.HEIGHT; i++) {
             if (i >= obstacle.gapBottom() && i < obstacle.gapTop()) continue;
 
             spriteBatch.draw(texture, obstacle.leftEdge(), i, 1, 1);
         }
-
-        spriteBatch.end();
     }
 }
