@@ -13,7 +13,7 @@ import com.m12y.flippy_bird.core.logic.Obstacle;
 
 public class GameRenderer {
     private final ShapeRenderer shapeRenderer;
-    private final OrthographicCamera camera;
+    final OrthographicCamera camera;
 
     private final BirdRenderer birdRenderer;
     private final ObstacleRenderer obstacleRenderer;
@@ -24,8 +24,6 @@ public class GameRenderer {
     public static GameRenderer instance;
 
     private final Texture ceilingTexture;
-    private int width;
-    private int height;
 
     public GameRenderer() {
         instance = this;
@@ -35,17 +33,17 @@ public class GameRenderer {
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camera.combined);
 
-        birdRenderer = new BirdRenderer(shapeRenderer);
-        obstacleRenderer = new ObstacleRenderer(shapeRenderer);
-
         spriteBatch = new SpriteBatch();
         font = new BitmapFont();
+
+        birdRenderer = new BirdRenderer(shapeRenderer);
+        obstacleRenderer = new ObstacleRenderer(spriteBatch);
 
         ceilingTexture = new Texture(Gdx.files.internal("bricks.png"));
     }
 
     public void render(Game game) {
-        Gdx.gl.glClearColor(0.8f, 0.8f, 0.8f, 0);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
         birdRenderer.render(game.bird);
@@ -60,7 +58,7 @@ public class GameRenderer {
         spriteBatch.end();
     }
 
-    private float unit() {
+    float unit() {
         return Gdx.graphics.getWidth() / Game.WIDTH;
     }
 
