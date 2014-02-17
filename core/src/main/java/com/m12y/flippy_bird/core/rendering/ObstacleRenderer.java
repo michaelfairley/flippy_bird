@@ -22,10 +22,8 @@ public class ObstacleRenderer {
 
         for (int i = 0; i < Game.HEIGHT; i++) {
             if (i >= obstacle.gapBottom() && i < obstacle.gapTop()) continue;
-            Vector3 postition = new Vector3(obstacle.leftEdge(), i, 0);
-            GameRenderer.instance.camera.project(postition);
 
-            spriteBatch.draw(texture, postition.x, postition.y, GameRenderer.instance.unit(), GameRenderer.instance.unit());
+            spriteBatch.draw(texture, obstacle.leftEdge(), i, 1, 1);
         }
 
         spriteBatch.end();

@@ -1,11 +1,13 @@
 package com.m12y.flippy_bird.core.rendering;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.m12y.flippy_bird.core.logic.Game;
@@ -13,13 +15,15 @@ import com.m12y.flippy_bird.core.logic.Obstacle;
 
 public class GameRenderer {
     private final ShapeRenderer shapeRenderer;
-    final OrthographicCamera camera;
+    private final OrthographicCamera camera;
+    private final OrthographicCamera textCamera;
 
     private final BirdRenderer birdRenderer;
     private final ObstacleRenderer obstacleRenderer;
 
-    private final BitmapFont font;
+    private final BitmapFont scoreFont;
     private final SpriteBatch spriteBatch;
+    private final SpriteBatch textSpriteBatch;
 
     public static GameRenderer instance;
 
@@ -30,12 +34,19 @@ public class GameRenderer {
         instance = this;
 
         camera = new OrthographicCamera();
+        textCamera = new OrthographicCamera();
 
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camera.combined);
 
         spriteBatch = new SpriteBatch();
-        font = new BitmapFont();
+        textSpriteBatch = new SpriteBatch();
+
+        FileHandle fontFile = Gdx.files.internal("score.fnt");
+        FileHandle fontImageFile = Gdx.files.internal("score.png");
+        Texture texture = new Texture(fontImageFile);
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        scoreFont = new BitmapFont(fontFile, new TextureRegion(texture), false);
 
         birdRenderer = new BirdRenderer(shapeRenderer);
         obstacleRenderer = new ObstacleRenderer(spriteBatch);
@@ -54,43 +65,48 @@ public class GameRenderer {
             obstacleRenderer.render(obstacle);
         }
 
+        renderScore(game);
+
         spriteBatch.begin();
-        font.draw(spriteBatch, Integer.toString(game.score), 20, 150);
         renderCeiling(game);
         renderFloor(game);
         spriteBatch.end();
     }
 
-    float unit() {
-        return Gdx.graphics.getWidth() / Game.WIDTH;
+    private void renderScore(Game game) {
+        String scoreString = Integer.toString(game.score);
+        float width = scoreFont.getBounds(scoreString).width;
+
+        textSpriteBatch.begin();
+        scoreFont.draw(textSpriteBatch, scoreString, (textCamera.viewportWidth - width) / 2, 380f);
+        textSpriteBatch.end();
     }
 
     private void renderCeiling(Game game) {
         float scrolled = game.ticks() * -Game.SCROLL_SPEED % 1;
         for (; scrolled < Game.WIDTH; scrolled += 1) {
-            Vector3 postition = new Vector3(scrolled, Game.HEIGHT, 0);
-            camera.project(postition);
-
-            spriteBatch.draw(ceilingTexture, postition.x, postition.y, unit(), unit());
+            spriteBatch.draw(ceilingTexture, scrolled, Game.HEIGHT, 1, 1);
         }
     }
 
     private void renderFloor(Game game) {
         float scrolled = game.ticks() * -Game.SCROLL_SPEED % 1;
         for (; scrolled < Game.WIDTH; scrolled += 1) {
-            for (int i = -1; i > Game.HEIGHT - camera.viewportHeight; i--) {
-                Vector3 postition = new Vector3(scrolled, i, 0);
-                camera.project(postition);
-
-                spriteBatch.draw(floorTexture, postition.x, postition.y, unit(), unit());
-            }
+//            for (int i = -1; i > Game.HEIGHT - camera.viewportHeight; i--) {
+                spriteBatch.draw(floorTexture, scrolled, -1, 1, 1);
+//            }
         }
     }
 
     public void resize(int width, int height) {
-        camera.setToOrtho(false, Game.WIDTH, Game.WIDTH * height/(1.0f*width));
-        camera.translate(0, Game.HEIGHT + 1 - Game.WIDTH * height/(1.0f*width));
+        camera.setToOrtho(false, Game.WIDTH, Game.WIDTH * height / (1.0f * width));
+        camera.translate(0, Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width));
         camera.update();
+        textCamera.setToOrtho(false, width, height);
+        textCamera.translate(0, (Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width)) * (width / Game.WIDTH));
+        textCamera.update();
         shapeRenderer.setProjectionMatrix(camera.combined);
+        spriteBatch.setProjectionMatrix(camera.combined);
+        textSpriteBatch.setProjectionMatrix(textCamera.combined);
     }
 }

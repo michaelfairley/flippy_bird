@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Game {
     public final Bird bird;
-    public int score;
+    public int score = 10;
     public final Array<Obstacle> obstacles;
 
     private float elapsed;
