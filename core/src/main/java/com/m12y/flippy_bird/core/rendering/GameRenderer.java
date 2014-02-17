@@ -92,9 +92,7 @@ public class GameRenderer {
     private void renderFloor(Game game) {
         float scrolled = game.ticks() * -Game.SCROLL_SPEED % 1;
         for (; scrolled < Game.WIDTH; scrolled += 1) {
-//            for (int i = -1; i > Game.HEIGHT - camera.viewportHeight; i--) {
-                spriteBatch.draw(floorTexture, scrolled, -1, 1, 1);
-//            }
+            spriteBatch.draw(floorTexture, scrolled, -1, 1, 1);
         }
     }
 
