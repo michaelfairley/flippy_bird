@@ -5,10 +5,10 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Obstacle {
     public float position;
-    public final float gap;
+    public final int gap;
 
     public static final float WIDTH = 1f;
-    public static final float GAP_SIZE = 3f;
+    public static final int GAP_SIZE = 3;
 
     public static final int GENERATION_RATE = 60;
 
@@ -16,7 +16,7 @@ public class Obstacle {
 
     public Obstacle() {
         position = Game.WIDTH + WIDTH;
-        gap = MathUtils.random();
+        gap = MathUtils.random(MathUtils.floor(Game.HEIGHT - GAP_SIZE));
         scored = false;
     }
 
@@ -25,11 +25,11 @@ public class Obstacle {
     }
 
     public float gapBottom() {
-        return (Game.HEIGHT - GAP_SIZE) * gap;
+        return gap;
     }
 
     public float gapTop() {
-        return (Game.HEIGHT - GAP_SIZE) * gap + GAP_SIZE;
+        return gap + GAP_SIZE;
     }
 
     public float leftEdge() {
