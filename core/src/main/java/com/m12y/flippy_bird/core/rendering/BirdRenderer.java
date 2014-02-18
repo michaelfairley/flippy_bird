@@ -16,6 +16,6 @@ public class BirdRenderer {
     }
 
     public void render(Bird bird) {
-        spriteBatch.draw(texture, bird.leftEdge(), bird.bottomEdge(), 1, 1);
+        spriteBatch.draw(texture, bird.leftEdge(), bird.bottomEdge(), 1, 1, 0, 0, 32, 32, false, bird.flipped);
     }
 }

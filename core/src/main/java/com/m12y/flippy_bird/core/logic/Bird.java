@@ -5,11 +5,11 @@ import com.badlogic.gdx.math.Rectangle;
 public class Bird {
     public float position;
     private float velocity;
-    private boolean flipped;
+    public boolean flipped;
 
     public static final float CENTER = 2f;
     public static final float WIDTH = 0.9f;
-    public static final float HEIGHT = 0.9f;
+    public static final float HEIGHT = 0.8f;
     private static final float GRAVITY = 0.012f;
     private static final float MAX_VELOCITY = 0.23f;
     private static final float DRAG_COEFFICIENT = GRAVITY / MAX_VELOCITY;
