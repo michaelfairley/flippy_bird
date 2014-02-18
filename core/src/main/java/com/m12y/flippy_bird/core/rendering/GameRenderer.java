@@ -15,6 +15,7 @@ import com.m12y.flippy_bird.core.logic.Obstacle;
 
 public class GameRenderer {
     private final ShapeRenderer shapeRenderer;
+    private final ShapeRenderer textShapeRenderer;
     private final OrthographicCamera camera;
     private final OrthographicCamera textCamera;
 
@@ -38,6 +39,7 @@ public class GameRenderer {
 
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setProjectionMatrix(camera.combined);
+        textShapeRenderer = new ShapeRenderer();
 
         spriteBatch = new SpriteBatch();
         textSpriteBatch = new SpriteBatch();
@@ -59,8 +61,6 @@ public class GameRenderer {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        renderScore(game);
-
         birdRenderer.render(game.bird);
 
         spriteBatch.begin();
@@ -72,6 +72,8 @@ public class GameRenderer {
         renderCeiling(game);
         renderFloor(game);
         spriteBatch.end();
+
+        renderScore(game);
     }
 
     private void renderScore(Game game) {
@@ -101,17 +103,33 @@ public class GameRenderer {
         camera.setToOrtho(false, Game.WIDTH, Game.WIDTH * height / (1.0f * width));
         camera.translate(0, Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width));
         camera.update();
+
         textCamera.setToOrtho(false, width, height);
         textCamera.translate(0, (Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width)) * (width / Game.WIDTH));
         textCamera.update();
+
         shapeRenderer.setProjectionMatrix(camera.combined);
         spriteBatch.setProjectionMatrix(camera.combined);
+
+        textShapeRenderer.setProjectionMatrix(textCamera.combined);
         textSpriteBatch.setProjectionMatrix(textCamera.combined);
     }
 
     public void renderStartText(String line1, String line2) {
         float width1 = scoreFont.getBounds(line1).width;
         float width2 = scoreFont.getBounds(line2).width;
+
+        float backgroundWidth = Math.max(width1, width2) + 40;
+
+        textShapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        textShapeRenderer.setColor(0, 0, 0, 0);
+        textShapeRenderer.rect(
+                (textCamera.viewportWidth - backgroundWidth) / 2,
+                30,
+                backgroundWidth,
+                140
+        );
+        textShapeRenderer.end();
 
         textSpriteBatch.begin();
         scoreFont.draw(textSpriteBatch, line1, (textCamera.viewportWidth - width1) / 2, 150f);

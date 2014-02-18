@@ -1,22 +1,38 @@
 package com.m12y.flippy_bird.core.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.math.MathUtils;
 import com.m12y.flippy_bird.core.input.GameOverInputProcessor;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
 
 public class GameOverScreen implements Screen {
     private final Game game;
+    private final int highScore;
+    private float elapsed;
 
     public GameOverScreen(Game game) {
         this.game = game;
-        Gdx.input.setInputProcessor(new GameOverInputProcessor());
+        Gdx.input.setInputProcessor(null);
+
+        Preferences prefs = Gdx.app.getPreferences("flipp_bird_prefernces");
+        int previousHighScore = prefs.getInteger("high_score", 0);
+        highScore = Math.max(game.score, previousHighScore);
+        prefs.putInteger("high_score", highScore);
+        prefs.flush();
     }
 
     @Override
     public void render(float delta) {
+        if (elapsed < 1 && elapsed + delta > 1) {
+            Gdx.input.setInputProcessor(new GameOverInputProcessor());
+        }
+        elapsed += delta;
+
         GameRenderer.instance.render(game);
+        GameRenderer.instance.renderStartText("High score:", Integer.toString(highScore));
     }
 
     @Override
