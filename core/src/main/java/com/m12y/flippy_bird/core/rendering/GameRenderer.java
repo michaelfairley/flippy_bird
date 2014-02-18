@@ -50,7 +50,7 @@ public class GameRenderer {
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         scoreFont = new BitmapFont(fontFile, new TextureRegion(texture), false);
 
-        birdRenderer = new BirdRenderer(shapeRenderer);
+        birdRenderer = new BirdRenderer(spriteBatch);
         obstacleRenderer = new ObstacleRenderer(spriteBatch);
 
         ceilingTexture = new Texture(Gdx.files.internal("bricks.png"));
@@ -61,9 +61,10 @@ public class GameRenderer {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-        birdRenderer.render(game.bird);
 
         spriteBatch.begin();
+
+        birdRenderer.render(game.bird);
 
         for (Obstacle obstacle : game.obstacles) {
             obstacleRenderer.render(obstacle);

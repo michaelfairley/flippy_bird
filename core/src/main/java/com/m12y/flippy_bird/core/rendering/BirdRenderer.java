@@ -1,19 +1,21 @@
 package com.m12y.flippy_bird.core.rendering;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.m12y.flippy_bird.core.logic.Bird;
 
 public class BirdRenderer {
-    private final ShapeRenderer shapeRenderer;
+    private final SpriteBatch spriteBatch;
+    private final Texture texture;
 
-    public BirdRenderer(ShapeRenderer shapeRenderer) {
-        this.shapeRenderer = shapeRenderer;
+    public BirdRenderer(SpriteBatch spriteBatch) {
+        this.spriteBatch = spriteBatch;
+        texture = new Texture(Gdx.files.internal("bird.png"));
     }
 
     public void render(Bird bird) {
-        shapeRenderer.setColor(1, 0, 0, 0);
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(bird.leftEdge(), bird.position - Bird.SIZE / 2, Bird.SIZE, Bird.SIZE);
-        shapeRenderer.end();
+        spriteBatch.draw(texture, bird.leftEdge(), bird.bottomEdge(), 1, 1);
     }
 }
