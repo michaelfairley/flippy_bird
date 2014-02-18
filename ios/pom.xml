@@ -64,6 +64,7 @@
             <mainClass>com.m12y.flippy_bird.ios.FlippyBirdApplicationDelegate</mainClass>
             <os>ios</os>
             <arch>x86</arch>
+            <iosInfoPList>Info.plist.xml</iosInfoPList>
             <resources>
               <resource>
                 <directory>../assets</directory>
