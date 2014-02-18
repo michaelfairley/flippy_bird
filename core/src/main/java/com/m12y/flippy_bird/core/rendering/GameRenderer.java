@@ -105,8 +105,10 @@ public class GameRenderer {
         camera.translate(0, Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width));
         camera.update();
 
-        textCamera.setToOrtho(false, width, height);
-        textCamera.translate(0, (Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width)) * (width / Game.WIDTH));
+        float textScale = width / 320.f;
+
+        textCamera.setToOrtho(false, width/textScale, height/textScale);
+        textCamera.translate(0, (Game.HEIGHT + 1 - Game.WIDTH * height / (1.0f * width)) * (width / Game.WIDTH) / textScale);
         textCamera.update();
 
         shapeRenderer.setProjectionMatrix(camera.combined);
