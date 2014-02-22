@@ -11,6 +11,6 @@ public class FlippyBirdDesktop {
 		config.useGL20 = true;
         config.width = 640/2;
         config.height = 1136/2;
-		new LwjglApplication(new FlippyBird(), config);
+		new LwjglApplication(new FlippyBird("Desktop"), config);
 	}
 }

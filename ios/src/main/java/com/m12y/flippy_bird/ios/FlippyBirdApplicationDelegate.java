@@ -14,7 +14,7 @@ public class FlippyBirdApplicationDelegate extends IOSApplication.Delegate {
         IOSApplicationConfiguration config = new IOSApplicationConfiguration();
         config.orientationLandscape = true;
         config.orientationPortrait = false;
-        return new IOSApplication(new FlippyBird(), config);
+        return new IOSApplication(new FlippyBird("iOS"), config);
     }
 
     public static void main(String[] argv) {

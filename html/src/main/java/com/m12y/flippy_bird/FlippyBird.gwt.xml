@@ -9,4 +9,6 @@
 	<entry-point class='com.m12y.flippy_bird.html.FlippyBirdHtml'/>
 	<set-configuration-property name="gdx.assetpath" value="assets" />
 	<set-configuration-property name="gdx.assetoutputpath" value="html/target/webapp" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.m12y.flippy_bird.core.analytics.DesignEvent" />
+    <extend-configuration-property name="gdx.reflect.include" value="com.m12y.flippy_bird.core.analytics.UserEvent" />
 </module>

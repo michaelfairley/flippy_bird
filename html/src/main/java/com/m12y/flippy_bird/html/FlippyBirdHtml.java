@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
 public class FlippyBirdHtml extends GwtApplication {
 	@Override
 	public ApplicationListener getApplicationListener () {
-		return new FlippyBird();
+		return new FlippyBird("HTML");
 	}
 	
 	@Override

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.MathUtils;
+import com.m12y.flippy_bird.core.FlippyBird;
+import com.m12y.flippy_bird.core.analytics.Analytics;
 import com.m12y.flippy_bird.core.input.GameOverInputProcessor;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
@@ -17,11 +19,12 @@ public class GameOverScreen implements Screen {
         this.game = game;
         Gdx.input.setInputProcessor(null);
 
-        Preferences prefs = Gdx.app.getPreferences("flipp_bird_prefernces");
-        int previousHighScore = prefs.getInteger("high_score", 0);
+        int previousHighScore = FlippyBird.instance.preferences.getInteger("high_score", 0);
         highScore = Math.max(game.score, previousHighScore);
-        prefs.putInteger("high_score", highScore);
-        prefs.flush();
+        FlippyBird.instance.preferences.putInteger("high_score", highScore);
+        FlippyBird.instance.preferences.flush();
+
+        FlippyBird.instance.analytics.gameOver(game.score);
     }
 
     @Override
