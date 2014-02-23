@@ -11,6 +11,7 @@ import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
 
 public class GameOverScreen implements Screen {
+    public static final float DELAY = 0.2f;
     private final Game game;
     private final int highScore;
     private float elapsed;
@@ -29,7 +30,7 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if (elapsed < 1 && elapsed + delta > 1) {
+        if (elapsed < DELAY && elapsed + delta > DELAY) {
             Gdx.input.setInputProcessor(new GameOverInputProcessor());
         }
         elapsed += delta;
