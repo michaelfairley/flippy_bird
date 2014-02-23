@@ -46,6 +46,14 @@ public class Bird {
         return position + HEIGHT / 2;
     }
 
+    public float imageBottom() {
+        return position - 0.5f;
+    }
+
+    public float imageLeft() {
+        return CENTER - 0.5f;
+    }
+
     public Rectangle rect() {
         return new Rectangle(leftEdge(), bottomEdge(), WIDTH, HEIGHT);
     }
