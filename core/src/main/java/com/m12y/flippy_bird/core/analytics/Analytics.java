@@ -12,7 +12,7 @@ public class Analytics {
     private String userId;
     private Json json;
 
-    public Analytics(String platform) {
+    public Analytics() {
         sessionId = MathUtils.random(100000) + "-" + MathUtils.random(100000);
 
         if (FlippyBird.instance.preferences.contains("user_id")) {
@@ -26,7 +26,7 @@ public class Analytics {
         json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
 
-        sendUserEvent(platform);
+        sendUserEvent(FlippyBird.instance.platform);
     }
 
     private void sendUserEvent(String platform) {

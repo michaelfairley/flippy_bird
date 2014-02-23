@@ -11,7 +11,7 @@ public class FlippyBird extends Game {
     public static FlippyBird instance;
     public GameRenderer gameRenderer;
     public Analytics analytics;
-    private String platform;
+    public String platform;
     public Preferences preferences;
 
     public FlippyBird(String platform) {
@@ -23,7 +23,7 @@ public class FlippyBird extends Game {
     public void create() {
         gameRenderer = new GameRenderer();
         preferences = Gdx.app.getPreferences("flippy_bird_prefernces");
-        analytics = new Analytics(platform);
+        analytics = new Analytics();
         setScreen(new StartScreen());
     }
 }

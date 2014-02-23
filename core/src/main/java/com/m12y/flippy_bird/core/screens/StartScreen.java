@@ -2,6 +2,7 @@ package com.m12y.flippy_bird.core.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.m12y.flippy_bird.core.FlippyBird;
 import com.m12y.flippy_bird.core.input.StartInputProcessor;
 import com.m12y.flippy_bird.core.logic.Game;
 import com.m12y.flippy_bird.core.rendering.GameRenderer;
@@ -18,7 +19,14 @@ public class StartScreen implements Screen {
     public void render(float delta) {
         game.noopdate(delta);
         GameRenderer.instance.render(game);
-        GameRenderer.instance.renderStartText("Press any key", "to flip");
+
+        String action;
+        if (FlippyBird.instance.platform.equals("ios")) {
+            action = "Tap anywhere";
+        } else {
+            action = "Press any key";
+        }
+        GameRenderer.instance.renderStartText(action, "to flip");
     }
 
     @Override
