@@ -80,4 +80,12 @@ public class Game {
             }
         }
     }
+
+    public void fall() {
+        if (bird.flipped) {
+            if (bird.topEdge() < Game.HEIGHT) bird.fall();
+        } else {
+            if (bird.bottomEdge() > 0) bird.fall();
+        }
+    }
 }

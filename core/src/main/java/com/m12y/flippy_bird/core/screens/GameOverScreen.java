@@ -3,6 +3,7 @@ package com.m12y.flippy_bird.core.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.MathUtils;
 import com.m12y.flippy_bird.core.FlippyBird;
 import com.m12y.flippy_bird.core.analytics.Analytics;
@@ -30,13 +31,20 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if (elapsed < DELAY && elapsed + delta > DELAY) {
-            Gdx.input.setInputProcessor(new GameOverInputProcessor());
+        if (elapsed < DELAY) {
+            float shade = 0.8f - elapsed / 1f;
+            Gdx.gl.glClearColor(shade, shade, shade, 0);
+            Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        } else {
+            if (elapsed + delta > DELAY) {
+                Gdx.input.setInputProcessor(new GameOverInputProcessor());
+            }
+
+            game.fall();
+            GameRenderer.instance.render(game);
+            GameRenderer.instance.renderStartText("High score:", Integer.toString(highScore));
         }
         elapsed += delta;
-
-        GameRenderer.instance.render(game);
-        GameRenderer.instance.renderStartText("High score:", Integer.toString(highScore));
     }
 
     @Override

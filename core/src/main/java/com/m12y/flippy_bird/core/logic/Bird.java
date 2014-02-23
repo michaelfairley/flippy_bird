@@ -21,6 +21,10 @@ public class Bird {
     }
 
     public void update() {
+        fall();
+    }
+
+    public void fall() {
         position += velocity;
         velocity += flipped ? GRAVITY : -GRAVITY;
         velocity -= drag();
