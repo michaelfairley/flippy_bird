@@ -7,7 +7,7 @@
         <key>CFBundleDisplayName</key>
         <string>${app.name}</string>
         <key>CFBundleExecutable</key>
-        <string>${app.executable}</string>
+        <string>com.m12y.flippy_bird.ios.FlippyBirdApplicationDelegate</string>
         <key>CFBundleIdentifier</key>
         <string>${app.id}</string>
         <key>CFBundleInfoDictionaryVersion</key>
