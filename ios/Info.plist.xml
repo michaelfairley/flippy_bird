@@ -26,6 +26,8 @@
         <true/>
         <key>UIStatusBarHidden</key>
         <true/>
+        <key>UIViewControllerBasedStatusBarAppearance</key>
+        <false/>
         <key>UIDeviceFamily</key>
         <array>
             <integer>1</integer>
@@ -49,7 +51,6 @@
                 <key>CFBundleIconFiles</key>
                 <array>
                     <string>Icon</string>
-                    <string>Icon-72</string>
                 </array>
             </dict>
         </dict>
