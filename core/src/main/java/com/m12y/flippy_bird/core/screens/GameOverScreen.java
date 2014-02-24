@@ -19,6 +19,7 @@ public class GameOverScreen implements Screen {
 
     public GameOverScreen(Game game) {
         this.game = game;
+        game.bird.stop();
         Gdx.input.setInputProcessor(null);
 
         int previousHighScore = FlippyBird.instance.preferences.getInteger("high_score", 0);

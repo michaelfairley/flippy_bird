@@ -30,6 +30,10 @@ public class Bird {
         velocity -= drag();
     }
 
+    public void stop() {
+        velocity = 0;
+    }
+
     public void flip() {
         flipped = !flipped;
     }
