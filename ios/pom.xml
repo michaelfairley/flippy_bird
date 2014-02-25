@@ -60,6 +60,8 @@
         <artifactId>robovm-maven-plugin</artifactId>
         <version>${robovm.maven.version}</version>
         <configuration>
+          <iosSignIdentity>iPhone Distribution</iosSignIdentity>
+          <iosProvisioningProfile>C9F10AD5-1FEC-4AA7-B4F6-8D33FC11590B</iosProvisioningProfile>
           <config>
             <mainClass>com.m12y.flippy_bird.ios.FlippyBirdApplicationDelegate</mainClass>
             <os>ios</os>
